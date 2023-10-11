@@ -1,0 +1,17 @@
+# Ignore artifacts:
+build
+coverage
+pnpm-lock.yaml
+
+# dotfile
+.env*
+
+# markdown
+*.md
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
