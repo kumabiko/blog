@@ -3,8 +3,9 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import Footer from "@/components/footer";
+import Header from "@/components/header";
+import { ThemeProvider } from "@/components/theme-provider";
 
 import Loading from "./loading";
 
@@ -22,13 +23,20 @@ export default function RootLayout({
     <html lang="ja">
       <head />
       <body className="container mx-auto">
-        <div className="flex min-h-screen flex-col">
-          <Header />
-          <main className="grow">
-            <Suspense fallback={<Loading />}>{children}</Suspense>
-          </main>
-          <Footer />
-        </div>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="flex min-h-screen flex-col">
+            <Header />
+            <main className="grow">
+              <Suspense fallback={<Loading />}>{children}</Suspense>
+            </main>
+            <Footer />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

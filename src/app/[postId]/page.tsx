@@ -33,7 +33,9 @@ export default async function StaticDetailPage({
       <time dateTime={post.updatedAt}>
         {dayjs(post.updatedAt).format("YYYY年MM月DD日")}
       </time>
-      <article className="prose">{parse(post.content)}</article>
+      <article className="prose dark:prose-invert">
+        {parse(post.content)}
+      </article>
     </div>
   );
 }
