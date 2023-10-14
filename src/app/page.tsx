@@ -11,10 +11,13 @@ export default async function StaticPage() {
 
   return (
     <div>
-      <ul>
+      <ul className="flex w-full flex-col gap-1">
         {contents.map((post) => {
           return (
-            <li key={post.id}>
+            <li
+              key={post.id}
+              className="w-full rounded-lg border bg-card p-2 text-card-foreground shadow-sm"
+            >
               <Link href={`/${post.id}`}>{post.title}</Link>
             </li>
           );

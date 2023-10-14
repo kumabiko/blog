@@ -28,7 +28,7 @@ export default async function StaticDetailPage({
   }
 
   return (
-    <div>
+    <div className="flex flex-col px-4">
       <h1>{post.title}</h1>
       <time dateTime={post.updatedAt}>
         {dayjs(post.updatedAt).format("YYYY年MM月DD日")}
