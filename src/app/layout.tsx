@@ -30,9 +30,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="mx-auto grid min-h-screen max-w-7xl grid-cols-10">
+          <div className="mx-auto flex min-h-screen max-w-7xl md:grid md:grid-cols-10">
             <SideNavbar />
-            <main className="col-span-8 w-full border-x border-slate-200 md:col-span-5">
+            <main className="w-full border-x border-slate-200 md:col-span-5">
               <Header />
               <Suspense fallback={<Loading />}>{children}</Suspense>
               <Footer />

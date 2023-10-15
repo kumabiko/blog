@@ -22,7 +22,7 @@ const items: NavLinkItem[] = [
 ];
 
 const SideNavbar = () => (
-  <aside className="flex min-w-[56px] md:col-span-2">
+  <aside className="hidden md:col-span-2 md:block">
     <div className="fixed flex h-full flex-1 flex-col">
       <div className="flex flex-1 flex-col">
         <NavItem href="/">
