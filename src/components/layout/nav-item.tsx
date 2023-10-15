@@ -8,7 +8,7 @@ interface Props {
 
 const NavItem = ({ href, children }: Props) => (
   <Link
-    className="my-1 flex max-w-fit items-center gap-x-4 rounded-full px-4 py-3 hover:bg-accent"
+    className="flex w-full items-center gap-x-4 rounded-md px-4 py-3 hover:bg-accent"
     href={href}
   >
     {children}
