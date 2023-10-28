@@ -2,17 +2,15 @@ import ContentCard from "@/components/content-card";
 import { getList } from "@/lib/microcms";
 
 export default async function StaticPage() {
-  const { contents } = await getList();
+  const blogs = await getList();
 
-  if (!contents || contents.length === 0) {
-    return <h1>No contents</h1>;
+  if (!blogs || blogs.length === 0) {
+    return <h1>No blogs</h1>;
   }
 
-  console.log(contents);
-
   return (
-    <ul className="flex w-full flex-wrap gap-4 px-4">
-      {contents.map(({ id, title, eyecatch, createdAt, revisedAt }) => {
+    <ul className="flex w-full flex-col gap-4 px-4">
+      {blogs.map(({ id, title, eyecatch, createdAt, revisedAt, category }) => {
         return (
           <li key={id} className="w-full">
             <ContentCard
@@ -20,6 +18,7 @@ export default async function StaticPage() {
               eyecatch={eyecatch}
               createdAt={createdAt}
               revisedAt={revisedAt}
+              name={category?.name}
               to={`/${id}`}
             />
           </li>

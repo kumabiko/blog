@@ -2,12 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
-import { Blog } from "@/lib/microcms";
+import { Blog, Category } from "@/lib/microcms";
 import { cn } from "@/lib/utils";
 import { formatFromDateString } from "@/utils/date";
 
+import { Badge } from "./ui/badge";
+
 type CardProps = React.ComponentProps<typeof Card> &
-  Pick<Blog, "title" | "eyecatch" | "createdAt" | "revisedAt"> & {
+  Pick<Blog, "title" | "eyecatch" | "createdAt" | "revisedAt"> &
+  Partial<Pick<Category, "name">> & {
     to: string;
   };
 
@@ -17,6 +20,7 @@ export default function ContentCard({
   eyecatch,
   createdAt,
   revisedAt,
+  name,
   to,
   ...props
 }: CardProps) {
@@ -36,10 +40,11 @@ export default function ContentCard({
           />
           <div className="flex flex-col justify-between px-2 pt-2">
             <CardTitle className="line-clamp-3 text-base">{title}</CardTitle>
-            <CardDescription>
+            <CardDescription className="flex gap-2">
               <time dateTime={revisedAt ?? createdAt}>
                 {formatFromDateString(revisedAt ?? createdAt)}
               </time>
+              {name && <Badge variant="secondary">{name}</Badge>}
             </CardDescription>
           </div>
         </div>
