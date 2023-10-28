@@ -1,6 +1,5 @@
-import Link from "next/link";
-
-import { getList } from "@/libs/microcms";
+import ContentCard from "@/components/content-card";
+import { getList } from "@/lib/microcms";
 
 export default async function StaticPage() {
   const { contents } = await getList();
@@ -9,20 +8,23 @@ export default async function StaticPage() {
     return <h1>No contents</h1>;
   }
 
+  console.log(contents);
+
   return (
-    <div>
-      <ul className="flex w-full flex-col gap-1">
-        {contents.map((post) => {
-          return (
-            <li
-              key={post.id}
-              className="w-full rounded-lg border bg-card p-2 text-card-foreground shadow-sm"
-            >
-              <Link href={`/${post.id}`}>{post.title}</Link>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <ul className="hidden-scrollbar flex w-full gap-4 overflow-auto px-4">
+      {contents.map(({ id, title, eyecatch, createdAt, revisedAt }) => {
+        return (
+          <li key={id}>
+            <ContentCard
+              title={title}
+              eyecatch={eyecatch}
+              createdAt={createdAt}
+              revisedAt={revisedAt}
+              to={`/${id}`}
+            />
+          </li>
+        );
+      })}
+    </ul>
   );
 }

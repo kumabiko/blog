@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 
-import { getDetail, getList } from "@/libs/microcms";
-import dayjs from "dayjs";
+import { getDetail, getList } from "@/lib/microcms";
 import parse from "html-react-parser";
 
 export async function generateStaticParams() {
@@ -30,9 +29,6 @@ export default async function StaticDetailPage({
   return (
     <div className="flex flex-col px-4">
       <h1>{post.title}</h1>
-      <time dateTime={post.updatedAt}>
-        {dayjs(post.updatedAt).format("YYYY年MM月DD日")}
-      </time>
       <article className="prose dark:prose-invert">
         {parse(post.content)}
       </article>
