@@ -4,11 +4,11 @@ import { getDetail, getList } from "@/lib/microcms";
 import parse from "html-react-parser";
 
 export async function generateStaticParams() {
-  const { contents } = await getList();
+  const blogs = await getList();
 
-  const paths = contents.map((post) => {
+  const paths = blogs.map((blog) => {
     return {
-      postId: post.id,
+      postId: blog.id,
     };
   });
 
