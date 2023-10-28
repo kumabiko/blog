@@ -21,24 +21,28 @@ export default function ContentCard({
   ...props
 }: CardProps) {
   return (
-    <Link href={to}>
+    <Link href={to} className="w-full">
       <Card
-        className={cn("h-[200px] w-[200px] border-none shadow-none", className)}
+        className={cn("w-full border-none shadow-none", className)}
         {...props}
       >
-        <Image
-          src={eyecatch?.url ?? "/images/NoImage.svg"}
-          alt={title}
-          width={200}
-          height={105}
-          className="mb-2 rounded"
-        />
-        <CardTitle className="text-base">{title}</CardTitle>
-        <CardDescription>
-          <time dateTime={revisedAt ?? createdAt}>
-            {formatFromDateString(revisedAt ?? createdAt)}
-          </time>
-        </CardDescription>
+        <div className="flex">
+          <Image
+            src={eyecatch?.url ?? "/images/NoImage.svg"}
+            alt={title}
+            width={200}
+            height={105}
+            className="rounded-lg"
+          />
+          <div className="flex flex-col justify-between px-2 pt-2">
+            <CardTitle className="line-clamp-3 text-base">{title}</CardTitle>
+            <CardDescription>
+              <time dateTime={revisedAt ?? createdAt}>
+                {formatFromDateString(revisedAt ?? createdAt)}
+              </time>
+            </CardDescription>
+          </div>
+        </div>
       </Card>
     </Link>
   );

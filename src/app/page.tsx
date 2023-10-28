@@ -11,10 +11,10 @@ export default async function StaticPage() {
   console.log(contents);
 
   return (
-    <ul className="hidden-scrollbar flex w-full gap-4 overflow-auto px-4">
+    <ul className="flex w-full flex-wrap gap-4 px-4">
       {contents.map(({ id, title, eyecatch, createdAt, revisedAt }) => {
         return (
-          <li key={id}>
+          <li key={id} className="w-full">
             <ContentCard
               title={title}
               eyecatch={eyecatch}
