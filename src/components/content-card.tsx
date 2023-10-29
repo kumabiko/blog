@@ -32,7 +32,7 @@ export default function ContentCard({
       >
         <div className="flex">
           <Image
-            src={eyecatch?.url ?? "/images/NoImage.svg"}
+            src={eyecatch?.url ?? "/images/no_image.svg"}
             alt={title}
             width={200}
             height={105}
@@ -40,12 +40,14 @@ export default function ContentCard({
           />
           <div className="flex flex-col justify-between px-2 pt-2">
             <CardTitle className="line-clamp-3 text-base">{title}</CardTitle>
-            <CardDescription className="flex gap-2">
-              <time dateTime={revisedAt ?? createdAt}>
-                {formatFromDateString(revisedAt ?? createdAt)}
-              </time>
+            <div className="flex gap-2">
+              <CardDescription>
+                <time dateTime={revisedAt ?? createdAt}>
+                  {formatFromDateString(revisedAt ?? createdAt)}
+                </time>
+              </CardDescription>
               {name && <Badge variant="secondary">{name}</Badge>}
-            </CardDescription>
+            </div>
           </div>
         </div>
       </Card>
