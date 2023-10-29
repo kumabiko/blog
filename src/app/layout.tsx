@@ -32,7 +32,7 @@ export default function RootLayout({
         >
           <div className="mx-auto flex min-h-screen max-w-7xl md:grid md:grid-cols-10">
             <SideNavbar />
-            <main className="w-full border-x border-slate-200 md:col-span-5">
+            <main className="w-full border-x border-slate-200 md:col-span-8 lg:col-span-5">
               <Header />
               <Suspense fallback={<Loading />}>{children}</Suspense>
               <Footer />

@@ -11,6 +11,12 @@ export type Blog = {
   title: string;
   content: string;
   eyecatch?: MicroCMSImage;
+  category: Category;
+} & MicroCMSDate;
+
+export type Category = {
+  id: string;
+  name: string;
 } & MicroCMSDate;
 
 // API取得用のクライアントを作成
@@ -36,9 +42,26 @@ export const getList = async (queries?: MicroCMSQueries) => {
   });
 
   // データの取得が目視しやすいよう明示的に遅延効果を追加
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+  // await new Promise((resolve) => setTimeout(resolve, 3000));
 
-  return listData;
+  return listData.contents;
+};
+
+// カテゴリ一覧を取得
+export const getCategoryList = async () => {
+  const listData = await client.getList<Category>({
+    endpoint: "categories",
+  });
+
+  return listData.contents;
+};
+
+export const getCategoryBlogList = async () => {
+  const listData = await client.getList<Category>({
+    endpoint: "categories",
+  });
+
+  return listData.contents;
 };
 
 // ブログの詳細を取得
@@ -51,9 +74,6 @@ export const getDetail = async (
     contentId,
     queries,
   });
-
-  // データの取得が目視しやすいよう明示的に遅延効果を追加
-  await new Promise((resolve) => setTimeout(resolve, 3000));
 
   return detailData;
 };
