@@ -38,9 +38,11 @@ export default function ContentCard({
             height={105}
             className="rounded-lg"
           />
+
           <div className="flex flex-col justify-between px-2 pt-2">
             <CardTitle className="line-clamp-3 text-base">{title}</CardTitle>
-            <div className="flex gap-2">
+
+            <div>
               <CardDescription>
                 <time dateTime={revisedAt ?? createdAt}>
                   {formatFromDateString(revisedAt ?? createdAt)}
