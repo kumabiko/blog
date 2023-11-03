@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 import Link from "next/link";
 
-interface Props {
+type Props = {
   href: string;
   children: ReactNode;
-}
+};
 
 const NavItem = ({ href, children }: Props) => (
   <Link
