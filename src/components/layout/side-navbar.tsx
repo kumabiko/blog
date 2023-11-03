@@ -1,6 +1,3 @@
-import Link from "next/link";
-
-import { getCategoryList } from "@/lib/microcms";
 import { LucideIcon, StickyNote, User } from "lucide-react";
 
 import AccountNavItem from "../account-nav-item";
@@ -26,8 +23,6 @@ const items: NavLinkItem[] = [
 ];
 
 const SideNavbar = async () => {
-  const categories = await getCategoryList();
-
   return (
     <aside className="hidden md:col-span-2 md:block">
       <div className="fixed flex h-full flex-col">
@@ -43,13 +38,6 @@ const SideNavbar = async () => {
             </NavItem>
           </div>
         ))}
-        <ul>
-          {categories.map((category) => (
-            <li key={category.id}>
-              <Link href={`/category/${category.id}`}>{category.name}</Link>
-            </li>
-          ))}
-        </ul>
       </div>
     </aside>
   );
