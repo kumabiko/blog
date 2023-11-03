@@ -22,7 +22,7 @@ const items: NavLinkItem[] = [
   },
 ];
 
-const SideNavbar = async () => {
+const SideNavbar = () => {
   return (
     <aside className="hidden md:col-span-2 md:block">
       <div className="fixed flex h-full flex-col">
