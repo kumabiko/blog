@@ -1,3 +1,6 @@
+import Link from "next/link";
+
+import { getCategoryList } from "@/lib/microcms";
 import { LucideIcon, StickyNote, User } from "lucide-react";
 
 import AccountNavItem from "../account-nav-item";
@@ -22,23 +25,34 @@ const items: NavLinkItem[] = [
   },
 ];
 
-const SideNavbar = () => (
-  <aside className="hidden md:col-span-2 md:block">
-    <div className="fixed flex h-full flex-col">
-      <AccountNavItem />
-      {items.map(({ href, text, icon: Icon }) => (
-        <div
-          key={text}
-          className="overflow-hidden rounded-lg focus:outline-none"
-        >
-          <NavItem href={href}>
-            <Icon />
-            <div className="text-lg font-medium">{text}</div>
-          </NavItem>
-        </div>
-      ))}
-    </div>
-  </aside>
-);
+const SideNavbar = async () => {
+  const categories = await getCategoryList();
+
+  return (
+    <aside className="hidden md:col-span-2 md:block">
+      <div className="fixed flex h-full flex-col">
+        <AccountNavItem />
+        {items.map(({ href, text, icon: Icon }) => (
+          <div
+            key={text}
+            className="overflow-hidden rounded-lg focus:outline-none"
+          >
+            <NavItem href={href}>
+              <Icon />
+              <div className="text-lg font-medium">{text}</div>
+            </NavItem>
+          </div>
+        ))}
+        <ul>
+          {categories.map((category) => (
+            <li key={category.id}>
+              <Link href={`/category/${category.id}`}>{category.name}</Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </aside>
+  );
+};
 
 export default SideNavbar;

@@ -1,13 +1,27 @@
+import { notFound } from "next/navigation";
+
 import ContentCard from "@/components/content-card";
-import { getList } from "@/lib/microcms";
+import { getCategoryList, getList } from "@/lib/microcms";
 
-export default async function Page() {
-  const blogs = await getList();
+export async function generateStaticParams() {
+  const categories = await getCategoryList();
 
-  if (!blogs || blogs.length === 0) {
-    return <h1>No blogs</h1>;
+  return categories.map((category) => ({
+    id: category.id.toString(),
+  }));
+}
+
+export default async function Page({
+  params: { categoryId },
+}: {
+  params: { categoryId: string };
+}) {
+  console.log("categoryId", categoryId);
+  const blogs = await getList({ filters: `category[equals]${categoryId}` });
+
+  if (!blogs) {
+    notFound();
   }
-
   return (
     <ul className="flex w-full flex-col gap-4 px-4">
       {blogs.map(({ id, title, eyecatch, createdAt, revisedAt, category }) => {

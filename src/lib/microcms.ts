@@ -56,14 +56,6 @@ export const getCategoryList = async () => {
   return listData.contents;
 };
 
-export const getCategoryBlogList = async () => {
-  const listData = await client.getList<Category>({
-    endpoint: "categories",
-  });
-
-  return listData.contents;
-};
-
 // ブログの詳細を取得
 export const getDetail = async (
   contentId: string,
