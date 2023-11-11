@@ -36,6 +36,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: url,
   },
+  metadataBase: new URL(url ?? "http://localhost:3000"),
 };
 
 export default function RootLayout({
