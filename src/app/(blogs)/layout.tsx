@@ -1,4 +1,4 @@
-import CategoryNavLink from "@/components/category-nav-link";
+import ChipLink from "@/components/chip-link";
 import { getCategoryList } from "@/lib/microcms";
 
 export default async function BlogLayout({
@@ -10,9 +10,9 @@ export default async function BlogLayout({
   return (
     <section>
       <div className="hidden-scrollbar flex gap-2 overflow-x-auto whitespace-nowrap p-4">
-        <CategoryNavLink href={"/"} name="すべて" />
+        <ChipLink href={"/"} name="すべて" />
         {categories.map((category) => (
-          <CategoryNavLink
+          <ChipLink
             key={category.id}
             href={`/category/${category.id}`}
             name={category.name}

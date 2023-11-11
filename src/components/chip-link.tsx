@@ -10,7 +10,7 @@ type Props = {
   name: string;
 };
 
-export default function CategoryNavLink({ href, name }: Props) {
+export default function ChipLink({ href, name }: Props) {
   const pathname = usePathname();
 
   return (

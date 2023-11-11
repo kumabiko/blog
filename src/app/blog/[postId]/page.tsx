@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { getDetail, getList } from "@/lib/microcms";
@@ -15,11 +16,18 @@ export async function generateStaticParams() {
   return [...paths];
 }
 
-export default async function StaticDetailPage({
-  params: { postId },
-}: {
+type Props = {
   params: { postId: string };
-}) {
+};
+
+export async function generateMetadata({
+  params: { postId },
+}: Props): Promise<Metadata> {
+  const post = await getDetail(postId);
+  return { title: post.title };
+}
+
+export default async function StaticDetailPage({ params: { postId } }: Props) {
   const post = await getDetail(postId);
 
   if (!post) {
