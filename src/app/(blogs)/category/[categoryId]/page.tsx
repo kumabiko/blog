@@ -30,7 +30,7 @@ export default async function Page({
             createdAt={createdAt}
             revisedAt={revisedAt}
             name={category?.name}
-            to={`blog/${id}`}
+            to={`/blog/${id}`}
           />
         </li>
       ))}
