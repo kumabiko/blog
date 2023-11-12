@@ -1,4 +1,4 @@
-import { LucideIcon, StickyNote, User } from "lucide-react";
+import { Book, LucideIcon, User } from "lucide-react";
 
 export type NavItem = {
   href: string;
@@ -9,7 +9,7 @@ export type NavItem = {
 export const navItems: NavItem[] = [
   {
     href: "/",
-    icon: StickyNote,
+    icon: Book,
     label: "Blog",
   },
   {
