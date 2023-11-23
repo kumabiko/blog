@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { Github } from "lucide-react";
+import { TbBrandGithub, TbBrandX } from "react-icons/tb";
 
 type CardProps = React.ComponentProps<typeof Card>;
 
@@ -30,7 +30,17 @@ export function UserCard({ className, ...props }: CardProps) {
           プロダクト開発🚀とデザイン🖼が好き
         </CardDescription>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="flex-col gap-2">
+        <Button variant="outline" className="w-full" asChild>
+          <a
+            href={"https://twitter.com/kumabiko"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full"
+          >
+            <TbBrandX size={16} className="mr-2" /> X
+          </a>
+        </Button>
         <Button className="w-full" asChild>
           <a
             href={"https://github.com/kumabiko"}
@@ -38,7 +48,7 @@ export function UserCard({ className, ...props }: CardProps) {
             rel="noopener noreferrer"
             className="w-full"
           >
-            <Github className="mr-2 h-4 w-4" /> Github
+            <TbBrandGithub size={16} className="mr-2" /> Github
           </a>
         </Button>
       </CardFooter>

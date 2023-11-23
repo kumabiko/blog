@@ -1,20 +1,26 @@
-import { Book, LucideIcon, User } from "lucide-react";
+import { IconType } from "react-icons";
+import {
+  HiBookOpen,
+  HiOutlineBookOpen,
+  HiOutlineUser,
+  HiUser,
+} from "react-icons/hi2";
 
 export type NavItem = {
   href: string;
-  icon: LucideIcon;
+  icons: { active: IconType; inactive: IconType };
   label: string;
 };
 
 export const navItems: NavItem[] = [
   {
     href: "/",
-    icon: Book,
+    icons: { active: HiBookOpen, inactive: HiOutlineBookOpen },
     label: "Blog",
   },
   {
     href: "/about",
-    icon: User,
+    icons: { active: HiUser, inactive: HiOutlineUser },
     label: "About",
   },
 ];
