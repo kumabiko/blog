@@ -14,7 +14,7 @@ export type NavItem = {
 
 export const navItems: NavItem[] = [
   {
-    href: "/",
+    href: "/blog",
     icons: { active: HiBookOpen, inactive: HiOutlineBookOpen },
     label: "Blog",
   },

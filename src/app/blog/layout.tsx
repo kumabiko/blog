@@ -10,11 +10,11 @@ export default async function BlogLayout({
   return (
     <section>
       <div className="hidden-scrollbar flex gap-2 overflow-x-auto whitespace-nowrap p-4">
-        <ChipLink href={"/"} name="すべて" />
+        <ChipLink href={"/blog"} name="すべて" />
         {categories.map((category) => (
           <ChipLink
             key={category.id}
-            href={`/category/${category.id}`}
+            href={`/blog/category/${category.id}`}
             name={category.name}
           />
         ))}
