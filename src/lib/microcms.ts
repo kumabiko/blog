@@ -23,15 +23,6 @@ export type Category = {
 export const client = createClient({
   serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN,
   apiKey: process.env.MICROCMS_API_KEY,
-  customFetch: (input, init) => {
-    if (typeof input === "string") {
-      const newInput = new URL(input);
-      const time = new Date();
-      newInput.searchParams.set("cacheclearparam", `${time.getMinutes()}`);
-      return fetch(newInput.href, init);
-    }
-    return fetch(input, init);
-  },
 });
 
 // ブログ一覧を取得
@@ -39,6 +30,9 @@ export const getList = async (queries?: MicroCMSQueries) => {
   const listData = await client.getList<Blog>({
     endpoint: "blogs",
     queries,
+    customRequestInit: {
+      cache: "no-store",
+    },
   });
 
   // データの取得が目視しやすいよう明示的に遅延効果を追加
@@ -51,6 +45,9 @@ export const getList = async (queries?: MicroCMSQueries) => {
 export const getCategoryList = async () => {
   const listData = await client.getList<Category>({
     endpoint: "categories",
+    customRequestInit: {
+      cache: "no-store",
+    },
   });
 
   return listData.contents;
@@ -65,6 +62,9 @@ export const getDetail = async (
     endpoint: "blogs",
     contentId,
     queries,
+    customRequestInit: {
+      cache: "no-store",
+    },
   });
 
   return detailData;

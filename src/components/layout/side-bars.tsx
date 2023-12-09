@@ -11,8 +11,8 @@ const SideNavbar = () => {
   const segment = useSelectedLayoutSegment();
 
   return (
-    <aside className="hidden md:col-span-2 md:block">
-      <div className="fixed flex h-full flex-col">
+    <aside className="sticky hidden w-[260px] border-r md:block">
+      <div className="flex h-full w-full flex-col">
         <AccountNavItem />
         {navItems.map((navItem) => (
           <div
