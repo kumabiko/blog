@@ -21,7 +21,7 @@ export default async function Page({
   }
 
   return (
-    <ul className="flex w-full flex-col gap-4 px-4">
+    <ul className="flex w-full flex-col gap-4">
       {blogs.map(({ id, title, eyecatch, createdAt, revisedAt, category }) => (
         <li key={id} className="w-full">
           <ContentCard

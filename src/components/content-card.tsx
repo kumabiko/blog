@@ -31,8 +31,8 @@ export default function ContentCard({
         className={cn("w-full border-none shadow-none", className)}
         {...props}
       >
-        <div className="flex">
-          <div className="w-[200px]">
+        <div className="flex flex-col md:flex-row">
+          <div className="md:w-[200px]">
             <AspectRatio ratio={16 / 9}>
               <Image
                 src={eyecatch?.url ?? "/images/no_image.svg"}

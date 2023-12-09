@@ -35,7 +35,7 @@ export default async function StaticDetailPage({ params: { postId } }: Props) {
   }
 
   return (
-    <div className="flex flex-col px-4">
+    <div className="flex flex-col">
       <h1>{post.title}</h1>
       <article className="prose dark:prose-invert">
         {parse(post.content)}
