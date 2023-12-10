@@ -1,15 +1,21 @@
+import { Information } from "@/lib/microcms";
+
 import { Avatar, AvatarImage } from "./ui/avatar";
 
-const AccountNavItem = () => (
+type Props = Pick<Information, "profileName" | "profileImage">;
+
+export const AccountNavItem = ({ profileName, profileImage }: Props) => (
   <div className="flex items-center gap-x-2 px-4 py-8">
-    <Avatar>
-      <AvatarImage src="/images/kumabiko.png" />
-    </Avatar>
+    {profileImage && (
+      <Avatar>
+        <AvatarImage src={profileImage.url} />
+      </Avatar>
+    )}
     <div className="flex flex-col">
-      <p className="text-base font-semibold">kumabiko</p>
-      <p className="text-sm font-medium text-muted-foreground">@kumabiko</p>
+      <p className="text-base font-semibold">{profileName}</p>
+      <p className="text-sm font-medium text-muted-foreground">
+        @{profileName}
+      </p>
     </div>
   </div>
 );
-
-export default AccountNavItem;

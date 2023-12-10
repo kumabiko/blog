@@ -3,11 +3,13 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 
-import Footer from "@/components/layout/footer";
-import Header from "@/components/layout/header";
-import SideBars from "@/components/layout/side-bars";
-import TabBars from "@/components/layout/tab-bars";
+import { AccountNavItem } from "@/components/account-nav-item";
+import { Footer } from "@/components/layout/footer";
+import { Header } from "@/components/layout/header";
+import { SideBars } from "@/components/layout/side-bars";
+import { TabBars } from "@/components/layout/tab-bars";
 import { ThemeProvider } from "@/components/theme-provider";
+import { getInformation } from "@/lib/microcms";
 
 import Loading from "./loading";
 
@@ -40,11 +42,13 @@ export const metadata: Metadata = {
   metadataBase: new URL(url ?? "http://localhost:3000"),
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const information = await getInformation();
+
   return (
     <html lang="ja" suppressHydrationWarning>
       <head />
@@ -56,11 +60,18 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="flex">
-            <SideBars />
+            <SideBars
+              navItemElement={
+                <AccountNavItem
+                  profileName={information.profileName}
+                  profileImage={information.profileImage}
+                />
+              }
+            />
             <main className="mx-auto min-h-screen w-full max-w-screen-sm px-4 pb-12 md:pb-0">
               <Header />
               <Suspense fallback={<Loading />}>{children}</Suspense>
-              <Footer />
+              <Footer copyright={information.copyright} />
             </main>
             <TabBars />
           </div>
