@@ -2,7 +2,8 @@ import ContentCard from "@/components/content-card";
 import { getList } from "@/lib/microcms";
 
 export default async function Page() {
-  const blogs = await getList();
+  const data = await getList();
+  const { contents: blogs } = data;
 
   if (!blogs || blogs.length === 0) {
     return <h1>No blogs</h1>;

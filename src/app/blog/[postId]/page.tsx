@@ -1,20 +1,8 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { getDetail, getList } from "@/lib/microcms";
+import { getDetail } from "@/lib/microcms";
 import parse from "html-react-parser";
-
-export async function generateStaticParams() {
-  const blogs = await getList();
-
-  const paths = blogs.map((blog) => {
-    return {
-      postId: blog.id,
-    };
-  });
-
-  return [...paths];
-}
 
 type Props = {
   params: { postId: string };
