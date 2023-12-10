@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 type Props = NavItem & { segment: string | null };
 
-const NavBarItem = ({ href, icons, label, segment }: Props) => {
+export const NavBarItem = ({ href, icons, label, segment }: Props) => {
   const isActive =
     (segment && href.includes(segment)) ||
     (href === "/" && segment === "(blogs)");
@@ -31,5 +31,3 @@ const NavBarItem = ({ href, icons, label, segment }: Props) => {
     </Link>
   );
 };
-
-export default NavBarItem;

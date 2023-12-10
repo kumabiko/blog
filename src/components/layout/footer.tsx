@@ -1,7 +1,11 @@
-export default function Footer() {
+import { Information } from "@/lib/microcms";
+
+type Props = Pick<Information, "copyright">;
+
+export const Footer = ({ copyright }: Props) => {
   return (
     <footer className="flex w-full justify-center px-4 py-2">
-      <small>© 2023 kumabiko</small>
+      <small>{copyright}</small>
     </footer>
   );
-}
+};

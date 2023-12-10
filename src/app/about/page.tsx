@@ -1,9 +1,9 @@
-import { UserCard } from "@/components/user-card";
+import { ProfileCard } from "./_components/profile-card";
 
-export default function Page() {
+export default async function Page() {
   return (
     <div className="flex justify-center">
-      <UserCard />
+      <ProfileCard />
     </div>
   );
 }

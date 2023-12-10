@@ -1,20 +1,13 @@
 import ContentCard from "@/components/content-card";
-import { getCategoryList, getList } from "@/lib/microcms";
-
-export async function generateStaticParams() {
-  const categories = await getCategoryList();
-
-  return categories.map((category) => ({
-    id: category.id.toString(),
-  }));
-}
+import { getList } from "@/lib/microcms";
 
 export default async function Page({
   params: { categoryId },
 }: {
   params: { categoryId: string };
 }) {
-  const blogs = await getList({ filters: `category[equals]${categoryId}` });
+  const data = await getList({ filters: `category[equals]${categoryId}` });
+  const { contents: blogs } = data;
 
   if (!blogs || blogs.length === 0) {
     return <h1>No blogs</h1>;

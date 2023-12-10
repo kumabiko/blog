@@ -4,9 +4,9 @@ import { useSelectedLayoutSegment } from "next/navigation";
 
 import { navItems } from "@/config";
 
-import NavBarItem from "./navbar-item";
+import { NavBarItem } from "./navbar-item";
 
-const TabBars = () => {
+export const TabBars = () => {
   const segment = useSelectedLayoutSegment();
 
   return (
@@ -24,5 +24,3 @@ const TabBars = () => {
     </div>
   );
 };
-
-export default TabBars;

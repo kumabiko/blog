@@ -19,6 +19,18 @@ export type Category = {
   name: string;
 } & MicroCMSDate;
 
+export type Information = {
+  siteName: string;
+  siteDescription: string;
+  siteThumbnail?: string;
+  copyright: string;
+  profileName: string;
+  profileDescription: string;
+  profileImage?: MicroCMSImage;
+  twitterLink?: string;
+  githubLink?: string;
+} & MicroCMSDate;
+
 // API取得用のクライアントを作成
 export const client = createClient({
   serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN,
@@ -38,7 +50,7 @@ export const getList = async (queries?: MicroCMSQueries) => {
   // データの取得が目視しやすいよう明示的に遅延効果を追加
   // await new Promise((resolve) => setTimeout(resolve, 3000));
 
-  return listData.contents;
+  return listData;
 };
 
 // カテゴリ一覧を取得
@@ -50,7 +62,7 @@ export const getCategoryList = async () => {
     },
   });
 
-  return listData.contents;
+  return listData;
 };
 
 // ブログの詳細を取得
@@ -68,4 +80,16 @@ export const getDetail = async (
   });
 
   return detailData;
+};
+
+// 基本情報を取得
+export const getInformation = async () => {
+  const objectData = await client.getObject<Information>({
+    endpoint: "information",
+    customRequestInit: {
+      cache: "no-store",
+    },
+  });
+
+  return objectData;
 };

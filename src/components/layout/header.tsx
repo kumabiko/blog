@@ -4,7 +4,7 @@ import { useSelectedLayoutSegment } from "next/navigation";
 
 import { ModeToggle } from "../mode-toggle";
 
-export default function Header() {
+export const Header = () => {
   const segment = useSelectedLayoutSegment();
 
   const headBigLetter = (letter: string) => {
@@ -21,4 +21,4 @@ export default function Header() {
       <ModeToggle />
     </header>
   );
-}
+};

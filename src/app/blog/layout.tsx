@@ -6,7 +6,8 @@ export default async function BlogLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const categories = await getCategoryList();
+  const data = await getCategoryList();
+  const { contents: categories } = data;
   return (
     <section>
       <div className="hidden-scrollbar flex gap-2 overflow-x-auto whitespace-nowrap p-4">
