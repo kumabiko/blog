@@ -4,7 +4,7 @@ import { Avatar, AvatarImage } from "./ui/avatar";
 
 type Props = Pick<Information, "profileName" | "profileImage">;
 
-export const AccountNavItem = ({ profileName, profileImage }: Props) => (
+export const AccountItem = ({ profileName, profileImage }: Props) => (
   <div className="flex items-center gap-x-2 px-4 py-8">
     {profileImage && (
       <Avatar>

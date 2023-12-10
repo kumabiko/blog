@@ -3,7 +3,9 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 
-import { AccountNavItem } from "@/components/account-nav-item";
+import Link from "next/link";
+
+import { AccountItem } from "@/components/account-item";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { SideBars } from "@/components/layout/side-bars";
@@ -62,10 +64,12 @@ export default async function RootLayout({
           <div className="flex">
             <SideBars
               navItemElement={
-                <AccountNavItem
-                  profileName={information.profileName}
-                  profileImage={information.profileImage}
-                />
+                <Link href="/">
+                  <AccountItem
+                    profileName={information.profileName}
+                    profileImage={information.profileImage}
+                  />
+                </Link>
               }
             />
             <main className="mx-auto min-h-screen w-full max-w-screen-sm px-4 pb-12 md:pb-0">
