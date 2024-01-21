@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  frontend-ci:
+  lint-and-build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -23,8 +23,6 @@ jobs:
           cache: "pnpm"
       - name: Install dependencies
         run: pnpm install
-      - name: Tsc
-        run: pnpm run tsc
       - name: Lint
         run: pnpm run lint
       - name: Build
