@@ -3,10 +3,6 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 
-import Link from "next/link";
-
-import { AccountItem } from "@/components/account-item";
-import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { SideBars } from "@/components/layout/side-bars";
 import { TabBars } from "@/components/layout/tab-bars";
@@ -61,20 +57,10 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <div className="flex">
-            <SideBars
-              navItemElement={
-                <Link href="/">
-                  <AccountItem
-                    profileName={information.profileName}
-                    profileImage={information.profileImage}
-                  />
-                </Link>
-              }
-            />
+            <SideBars {...information} />
             <main className="mx-auto min-h-screen w-full max-w-screen-sm px-4 pb-12 md:pb-0">
               <Header />
               <Suspense fallback={<Loading />}>{children}</Suspense>
-              <Footer copyright={information.copyright} />
             </main>
             <TabBars />
           </div>
