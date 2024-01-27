@@ -20,8 +20,9 @@ export type Category = {
 } & MicroCMSDate;
 
 export type Information = {
+  url: string;
   siteName: string;
-  siteDescription: string;
+  description: string;
   siteThumbnail?: string;
   copyright: string;
   profileName: string;

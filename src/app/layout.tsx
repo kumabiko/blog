@@ -15,35 +15,34 @@ import { getInformation } from "@/lib/microcms";
 
 import Loading from "./loading";
 
-const siteName = `${process.env.USER_NAME} Blog`;
-const description = `${process.env.USER_NAME}のブログ`;
-const url = process.env.URL;
-
-export const metadata: Metadata = {
-  title: {
-    default: siteName,
-    template: `%s - ${siteName}`,
-  },
-  description,
-  openGraph: {
-    title: siteName,
+export async function generateMetadata(): Promise<Metadata> {
+  const post = await getInformation();
+  const { siteName, description, url } = post;
+  return {
+    title: {
+      default: siteName,
+      template: `%s - ${siteName}`,
+    },
     description,
-    url,
-    siteName,
-    locale: "ja_JP",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteName,
-    description,
-  },
-  alternates: {
-    canonical: url,
-  },
-  metadataBase: new URL(url ?? "http://localhost:3000"),
-};
-
+    openGraph: {
+      title: siteName,
+      description,
+      url,
+      siteName,
+      locale: "ja_JP",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: siteName,
+      description,
+    },
+    alternates: {
+      canonical: url,
+    },
+    metadataBase: new URL(url ?? "http://localhost:3000"),
+  };
+}
 export default async function RootLayout({
   children,
 }: {
