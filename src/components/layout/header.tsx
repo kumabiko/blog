@@ -4,6 +4,8 @@ import { useSelectedLayoutSegment } from "next/navigation";
 
 import { ModeToggle } from "../mode-toggle";
 
+const DEFAULT_SEGMENT = "__DEFAULT__";
+
 export const Header = () => {
   const segment = useSelectedLayoutSegment();
 
@@ -14,9 +16,11 @@ export const Header = () => {
   };
 
   return (
-    <header className="flex h-14 items-center justify-between">
+    <header className="sticky top-0 flex h-14 items-center justify-between">
       <h1 className="text-2xl font-extrabold">
-        {headBigLetter(segment ?? "")}
+        {headBigLetter(
+          segment === null || segment === DEFAULT_SEGMENT ? "" : segment,
+        )}
       </h1>
       <ModeToggle />
     </header>

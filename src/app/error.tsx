@@ -2,21 +2,20 @@
 
 import React, { useEffect } from "react";
 
+import { Button } from "@/components/ui/button";
+
 const Error = ({ error, reset }: { error: Error; reset: () => void }) => {
   useEffect(() => {
-    console.error(error);
+    console.error("😢", error);
   }, [error]);
 
   return (
-    <div className="mx-auto mt-4 max-w-md rounded border-l-4 border-red-500 bg-red-100 p-4 text-red-700 shadow-md">
-      <h3 className="mb-2 font-bold">エラー</h3>
-      <p>エラーが発生しました。</p>
-      <button
-        onClick={() => reset()}
-        className="mt-2 rounded bg-red-600 px-4 py-2 text-white transition duration-200 ease-in-out hover:bg-red-500"
-      >
+    <div className="flex flex-col items-center justify-center gap-4 py-10">
+      <p className="text-xl">{error.message}</p>
+      <h2 className="text-xl font-semibold">エラーが発生しました。</h2>
+      <Button variant="destructive" onClick={() => reset()}>
         もう一度試す
-      </button>
+      </Button>
     </div>
   );
 };
