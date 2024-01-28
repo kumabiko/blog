@@ -15,7 +15,7 @@ export async function generateMetadata({
   return { title: post.title };
 }
 
-export default async function StaticDetailPage({ params: { postId } }: Props) {
+export default async function Page({ params: { postId } }: Props) {
   const post = await getDetail(postId);
 
   if (!post) {

@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation";
+
 import { createClient } from "microcms-js-sdk";
 import type {
   MicroCMSDate,
@@ -40,13 +42,15 @@ export const client = createClient({
 
 // ブログ一覧を取得
 export const getList = async (queries?: MicroCMSQueries) => {
-  const listData = await client.getList<Blog>({
-    endpoint: "blogs",
-    queries,
-    customRequestInit: {
-      cache: "no-store",
-    },
-  });
+  const listData = await client
+    .getList<Blog>({
+      endpoint: "blogs",
+      queries,
+      customRequestInit: {
+        cache: "no-store",
+      },
+    })
+    .catch(notFound);
 
   // データの取得が目視しやすいよう明示的に遅延効果を追加
   // await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -56,12 +60,14 @@ export const getList = async (queries?: MicroCMSQueries) => {
 
 // カテゴリ一覧を取得
 export const getCategoryList = async () => {
-  const listData = await client.getList<Category>({
-    endpoint: "categories",
-    customRequestInit: {
-      cache: "no-store",
-    },
-  });
+  const listData = await client
+    .getList<Category>({
+      endpoint: "categories",
+      customRequestInit: {
+        cache: "no-store",
+      },
+    })
+    .catch(notFound);
 
   return listData;
 };
@@ -71,26 +77,30 @@ export const getDetail = async (
   contentId: string,
   queries?: MicroCMSQueries,
 ) => {
-  const detailData = await client.getListDetail<Blog>({
-    endpoint: "blogs",
-    contentId,
-    queries,
-    customRequestInit: {
-      cache: "no-store",
-    },
-  });
+  const detailData = await client
+    .getListDetail<Blog>({
+      endpoint: "blogs",
+      contentId,
+      queries,
+      customRequestInit: {
+        cache: "no-store",
+      },
+    })
+    .catch(notFound);
 
   return detailData;
 };
 
 // 基本情報を取得
 export const getInformation = async () => {
-  const objectData = await client.getObject<Information>({
-    endpoint: "information",
-    customRequestInit: {
-      cache: "no-store",
-    },
-  });
+  const objectData = await client
+    .getObject<Information>({
+      endpoint: "information",
+      customRequestInit: {
+        cache: "no-store",
+      },
+    })
+    .catch(notFound);
 
   return objectData;
 };
