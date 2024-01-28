@@ -16,7 +16,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 flex h-14 items-center justify-between">
+    <header className="flex h-14 items-center justify-between">
       <h1 className="text-2xl font-extrabold">
         {headBigLetter(
           segment === null || segment === DEFAULT_SEGMENT ? "" : segment,
