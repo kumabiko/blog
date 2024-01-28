@@ -1,6 +1,9 @@
+name: Frontend CI
+
 on:
   pull_request:
     types: [opened, reopened, synchronize]
+  workflow_dispatch:
 
 jobs:
   lint-and-build:
