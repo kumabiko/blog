@@ -3,12 +3,13 @@
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { Input } from "@/components/ui/input";
+import { useDebouncedCallback } from "use-debounce";
 
 export const SearchField = ({ placeholder }: { placeholder: string }) => {
   const searchParams = useSearchParams();
   const { replace } = useRouter();
 
-  const handleSearch = (term: string) => {
+  const handleSearch = useDebouncedCallback((term: string) => {
     const params = new URLSearchParams(searchParams);
     if (term) {
       params.set("q", term);
@@ -16,7 +17,7 @@ export const SearchField = ({ placeholder }: { placeholder: string }) => {
       params.delete("q");
     }
     replace(`/blog/search?${params.toString()}`);
-  };
+  }, 300);
 
   return (
     <div className="relative flex flex-1 shrink-0">
