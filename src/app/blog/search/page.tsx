@@ -1,6 +1,6 @@
 import { getList } from "@/lib/microcms";
 
-import { BlogList } from "./_components/blog-list";
+import { BlogList } from "../_components/blog-list";
 
 type Props = {
   searchParams: {
