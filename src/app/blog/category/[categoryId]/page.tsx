@@ -1,13 +1,31 @@
+import { LIMIT } from "@/constants";
 import { getList } from "@/lib/microcms";
 
 import { BlogList } from "../../_components/blog-list";
+import Pagination from "../../_components/pagination";
 
-export default async function Page({
-  params: { categoryId },
-}: {
+type Props = {
   params: { categoryId: string };
-}) {
-  const data = await getList({ filters: `category[equals]${categoryId}` });
+  searchParams: {
+    page?: string;
+  };
+};
 
-  return <BlogList blogs={data.contents} />;
+export default async function Page({ params, searchParams }: Props) {
+  const current = parseInt(searchParams.page || "1", 10);
+
+  const data = await getList({
+    limit: LIMIT,
+    offset: LIMIT * (current - 1),
+    filters: `category[equals]${params.categoryId}`,
+  });
+
+  console.log(data.totalCount);
+
+  return (
+    <>
+      <BlogList blogs={data.contents} />
+      <Pagination totalCount={data.totalCount} />
+    </>
+  );
 }

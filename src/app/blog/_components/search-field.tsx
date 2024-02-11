@@ -12,11 +12,11 @@ export const SearchField = ({ placeholder }: { placeholder: string }) => {
   const handleSearch = useDebouncedCallback((term: string) => {
     const params = new URLSearchParams(searchParams);
     if (term) {
-      params.set("q", term);
+      params.set("query", term);
     } else {
-      params.delete("q");
+      params.delete("query");
     }
-    replace(`/blog/search?${params.toString()}`);
+    replace(`/blog?${params.toString()}`);
   }, 300);
 
   return (
@@ -29,7 +29,7 @@ export const SearchField = ({ placeholder }: { placeholder: string }) => {
         onChange={(e) => {
           handleSearch(e.target.value);
         }}
-        defaultValue={searchParams.get("q")?.toString()}
+        defaultValue={searchParams.get("query")?.toString()}
       />
     </div>
   );
