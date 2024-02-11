@@ -1,5 +1,11 @@
 ## :cyclone: 関連する課題 (issue 番号と課題名)
 
+<!--
+次のいずれかを書いてください。
+#issue番号（マージ時にまだ issue を close してはいけない場合）
+Closes #番号（マージ時に issue を自動的に close させる場合）
+-->
+
 - here
 
 ## :cyclone: 具体的にやったこと
