@@ -58,7 +58,7 @@ export default async function RootLayout({
         >
           <div className="flex">
             <SideBars {...information} />
-            <main className="mx-auto min-h-screen w-full max-w-screen-sm px-4 pb-12 md:pb-0">
+            <main className="mx-auto min-h-screen w-full min-w-[320px] max-w-screen-sm px-4 pb-12 md:pb-0">
               <Header />
               <Suspense fallback={<Loading />}>{children}</Suspense>
             </main>

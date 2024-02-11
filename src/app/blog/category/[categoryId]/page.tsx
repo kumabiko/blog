@@ -1,32 +1,31 @@
-import ContentCard from "@/components/content-card";
+import { LIMIT } from "@/constants";
 import { getList } from "@/lib/microcms";
 
-export default async function Page({
-  params: { categoryId },
-}: {
-  params: { categoryId: string };
-}) {
-  const data = await getList({ filters: `category[equals]${categoryId}` });
-  const { contents: blogs } = data;
+import { BlogList } from "../../_components/blog-list";
+import Pagination from "../../_components/pagination";
 
-  if (!blogs || blogs.length === 0) {
-    return <h1>No blogs</h1>;
-  }
+type Props = {
+  params: { categoryId: string };
+  searchParams: {
+    page?: string;
+  };
+};
+
+export default async function Page({ params, searchParams }: Props) {
+  const current = parseInt(searchParams.page || "1", 10);
+
+  const data = await getList({
+    limit: LIMIT,
+    offset: LIMIT * (current - 1),
+    filters: `category[equals]${params.categoryId}`,
+  });
+
+  console.log(data.totalCount);
 
   return (
-    <ul className="flex w-full flex-col gap-4">
-      {blogs.map(({ id, title, eyecatch, createdAt, revisedAt, category }) => (
-        <li key={id} className="w-full">
-          <ContentCard
-            title={title}
-            eyecatch={eyecatch}
-            createdAt={createdAt}
-            revisedAt={revisedAt}
-            name={category?.name}
-            to={`/blog/${id}`}
-          />
-        </li>
-      ))}
-    </ul>
+    <>
+      <BlogList blogs={data.contents} />
+      <Pagination totalCount={data.totalCount} />
+    </>
   );
 }
