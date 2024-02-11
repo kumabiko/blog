@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 
+import Script from "next/script";
+
 import { Header } from "@/components/layout/header";
 import { SideBars } from "@/components/layout/side-bars";
 import { TabBars } from "@/components/layout/tab-bars";
@@ -65,6 +67,7 @@ export default async function RootLayout({
             <TabBars />
           </div>
         </ThemeProvider>
+        <Script src="//cdn.iframe.ly/embed.js" />
       </body>
     </html>
   );
