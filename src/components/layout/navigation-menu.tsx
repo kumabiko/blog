@@ -35,6 +35,7 @@ export const NavigationMenu = ({
               icons={navItem.icons}
               label={navItem.label}
               segment={segment}
+              layout="side"
             />
           </div>
         ))}
