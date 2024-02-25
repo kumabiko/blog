@@ -35,9 +35,9 @@ export default async function Page({ params: { postId } }: Props) {
   };
 
   return (
-    <div className="flex flex-col">
-      <h1>{post.title}</h1>
-      <article className="prose dark:prose-invert">
+    <div className="flex flex-col gap-6">
+      <h1 className="text-2xl font-bold">{post.title}</h1>
+      <article className="prose break-all dark:prose-invert">
         {parse(post.content, options)}
       </article>
     </div>

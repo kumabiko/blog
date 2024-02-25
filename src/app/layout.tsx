@@ -14,8 +14,8 @@ import { getInformation } from "@/lib/microcms";
 import Loading from "./loading";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const post = await getInformation();
-  const { siteName, description, url } = post;
+  const information = await getInformation();
+  const { siteName, description, url } = information;
   return {
     title: {
       default: siteName,
