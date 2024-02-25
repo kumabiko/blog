@@ -15,17 +15,12 @@ export const NavBarItem = ({ href, icons, label, segment }: Props) => {
   return (
     <Link
       className={cn(
-        "flex w-full flex-col items-center gap-x-4 rounded-md p-1 md:flex-row md:p-2 md:hover:bg-accent",
+        "flex w-full flex-row items-center gap-x-4 rounded-md p-2 hover:bg-accent",
       )}
       href={href}
     >
       <Icon size={24} />
-      <div
-        className={cn(
-          "text-xs font-medium md:text-lg",
-          isActive && "font-bold",
-        )}
-      >
+      <div className={cn("text-lg font-medium", isActive && "font-bold")}>
         {label}
       </div>
     </Link>

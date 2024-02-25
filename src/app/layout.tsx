@@ -6,8 +6,8 @@ import "./globals.css";
 import Script from "next/script";
 
 import { Header } from "@/components/layout/header";
+import { NavigationMenu } from "@/components/layout/navigation-menu";
 import { SideBars } from "@/components/layout/side-bars";
-import { TabBars } from "@/components/layout/tab-bars";
 import { ThemeProvider } from "@/components/theme-provider";
 import { getInformation } from "@/lib/microcms";
 
@@ -59,12 +59,15 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <div className="flex">
-            <SideBars {...information} />
+            <aside className="sticky hidden w-[220px] shrink-0 border-r md:block">
+              <SideBars>
+                <NavigationMenu {...information} />
+              </SideBars>
+            </aside>
             <main className="mx-auto min-h-screen w-full min-w-[320px] max-w-screen-sm px-4 pb-12 md:pb-0">
-              <Header />
+              <Header {...information} />
               <Suspense fallback={<Loading />}>{children}</Suspense>
             </main>
-            <TabBars />
           </div>
         </ThemeProvider>
         <Script src="//cdn.iframe.ly/embed.js" />
