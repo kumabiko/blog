@@ -47,13 +47,10 @@ export const getList = async (queries?: MicroCMSQueries) => {
       endpoint: "blogs",
       queries,
       customRequestInit: {
-        cache: "no-store",
+        next: { tags: ["blogs"] },
       },
     })
     .catch(notFound);
-
-  // データの取得が目視しやすいよう明示的に遅延効果を追加
-  // await new Promise((resolve) => setTimeout(resolve, 3000));
 
   return listData;
 };
@@ -64,7 +61,7 @@ export const getCategoryList = async () => {
     .getList<Category>({
       endpoint: "categories",
       customRequestInit: {
-        cache: "no-store",
+        next: { tags: ["categories"] },
       },
     })
     .catch(notFound);
@@ -83,7 +80,7 @@ export const getDetail = async (
       contentId,
       queries,
       customRequestInit: {
-        cache: "no-store",
+        next: { tags: ["blogs"] },
       },
     })
     .catch(notFound);
@@ -97,7 +94,7 @@ export const getInformation = async () => {
     .getObject<Information>({
       endpoint: "information",
       customRequestInit: {
-        cache: "no-store",
+        next: { tags: ["information"] },
       },
     })
     .catch(notFound);
