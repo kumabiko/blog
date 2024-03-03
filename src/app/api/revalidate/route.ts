@@ -2,22 +2,9 @@ import * as crypto from "crypto";
 import { revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";
 
-type RequestBody = {
-  id: string | null | undefined;
-  api: string;
-};
-
 export async function POST(request: Request): Promise<Response> {
   const bodyText = await request.text();
   const bodyBuffer = Buffer.from(bodyText, "utf-8");
-
-  const { id, api: endpoint } = JSON.parse(bodyText) as RequestBody;
-  if (!bodyText) {
-    console.error("Body is empty.");
-    return NextResponse.json({
-      status: 400,
-    });
-  }
 
   const secret = process.env.MICROCMS_WEBHOOK_SIGNATURE_SECRET;
   if (!secret) {
@@ -52,11 +39,7 @@ export async function POST(request: Request): Promise<Response> {
     });
   }
 
-  if (id) {
-    revalidateTag(`${endpoint}/${id}`);
-  }
-
-  revalidateTag(endpoint);
+  revalidateTag("blogs");
 
   return NextResponse.json({ message: "success" });
 }
