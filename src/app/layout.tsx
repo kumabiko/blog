@@ -63,7 +63,7 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <div className="flex">
-            <aside className="sticky hidden w-[220px] shrink-0 border-r md:block">
+            <aside className="sticky top-0 hidden h-screen w-[220px] border-r md:block">
               <SideBars>
                 <NavigationMenu {...information} />
               </SideBars>
