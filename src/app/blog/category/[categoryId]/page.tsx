@@ -20,8 +20,6 @@ export default async function Page({ params, searchParams }: Props) {
     filters: `category[equals]${params.categoryId}`,
   });
 
-  console.log(data.totalCount);
-
   return (
     <>
       <BlogList blogs={data.contents} />
