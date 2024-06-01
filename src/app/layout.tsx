@@ -68,7 +68,7 @@ export default async function RootLayout({
                 <NavigationMenu {...information} />
               </SideBars>
             </aside>
-            <main className="mx-auto min-h-screen w-full min-w-[320px] max-w-screen-sm px-4 pb-12 md:pb-0">
+            <main className="mx-auto min-h-screen w-full min-w-[320px] max-w-screen-sm px-4 pb-[76px] md:pb-4">
               <Header {...information} />
               <Suspense fallback={<Loading />}>{children}</Suspense>
             </main>

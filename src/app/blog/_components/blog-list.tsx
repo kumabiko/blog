@@ -13,12 +13,12 @@ export const BlogList = ({ blogs }: Props) => {
   }
   return (
     <ul className="flex w-full flex-col gap-4">
-      {blogs.map(({ id, title, eyecatch, createdAt, revisedAt, category }) => (
+      {blogs.map(({ id, title, eyecatch, updatedAt, revisedAt, category }) => (
         <li key={id} className="w-full">
           <ContentCard
             title={title}
             eyecatch={eyecatch}
-            createdAt={createdAt}
+            updatedAt={updatedAt}
             revisedAt={revisedAt}
             name={category?.name}
             to={`/blog/${id}`}

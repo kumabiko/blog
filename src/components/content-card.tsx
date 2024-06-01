@@ -10,7 +10,7 @@ import { AspectRatio } from "./ui/aspect-ratio";
 import { Badge } from "./ui/badge";
 
 type CardProps = React.ComponentProps<typeof Card> &
-  Pick<Blog, "title" | "eyecatch" | "createdAt" | "revisedAt"> &
+  Pick<Blog, "title" | "eyecatch" | "updatedAt" | "revisedAt"> &
   Partial<Pick<Category, "name">> & {
     to: string;
   };
@@ -19,7 +19,7 @@ export default function ContentCard({
   className,
   title,
   eyecatch,
-  createdAt,
+  updatedAt,
   revisedAt,
   name,
   to,
@@ -48,8 +48,8 @@ export default function ContentCard({
 
             <div>
               <CardDescription>
-                <time dateTime={revisedAt ?? createdAt}>
-                  {formatFromDateString(revisedAt ?? createdAt)}
+                <time dateTime={revisedAt ?? updatedAt}>
+                  {formatFromDateString(revisedAt ?? updatedAt)}
                 </time>
               </CardDescription>
               {name && <Badge variant="secondary">{name}</Badge>}
