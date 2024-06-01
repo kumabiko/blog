@@ -1,7 +1,9 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { Badge } from "@/components/ui/badge";
 import { getDetail } from "@/lib/microcms";
+import { formatFromDateString } from "@/utils/date";
 import parse, { HTMLReactParserOptions } from "html-react-parser";
 
 type Props = {
@@ -34,11 +36,20 @@ export default async function Page({ params: { postId } }: Props) {
     },
   };
 
+  const { title, content, updatedAt, revisedAt } = post;
+
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-2xl font-bold">{post.title}</h1>
+      <div className="flex flex-col gap-2">
+        <h1 className="text-2xl font-bold">{title}</h1>
+        <Badge variant="secondary" className="w-fit">
+          <time dateTime={revisedAt ?? updatedAt}>
+            {formatFromDateString(revisedAt ?? updatedAt)}
+          </time>
+        </Badge>
+      </div>
       <article className="prose break-all dark:prose-invert">
-        {parse(post.content, options)}
+        {parse(content, options)}
       </article>
     </div>
   );
