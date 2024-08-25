@@ -1,5 +1,3 @@
-import { withSentryConfig } from "@sentry/nextjs";
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -8,6 +6,11 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+
+// Injected content via Sentry wizard below
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { withSentryConfig } = require("@sentry/nextjs");
 
 module.exports = withSentryConfig(module.exports, {
   // For all available options, see:
